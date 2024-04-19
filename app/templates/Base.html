@@ -33,7 +33,11 @@
           <ul class="nav nav-pills pull-right">
             <li role="presentation" class="active">
               {% if current_user.is_authenticated %}
+<<<<<<< HEAD
               <a href="{{url_for('perfil', user = current_user.username)}}">{{current_user.username}}</a></li>
+=======
+              <a href="{{url_for('index')}}">{{current_user.username}}</a></li>
+>>>>>>> 3f554488346b6917707d68a7472548b21c841d4d
               {% else %}
               <a href="{{url_for('index')}}">Home</a></li>
               {% endif %}

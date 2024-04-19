@@ -48,7 +48,10 @@ def signup():
 @app.route('/feed')
 def feed():
     return render_template('feed.html')
+<<<<<<< HEAD
 
 @app.route('/perfil/<user>')
 def perfil(user):
     return render_template('perfil.html',user = user)
+=======
+>>>>>>> 3f554488346b6917707d68a7472548b21c841d4d
