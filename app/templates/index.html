@@ -1,0 +1,32 @@
+{% extends 'Base.html' %}
+{% block title%} {{super()}} - Home {%endblock%}
+{% block content %}
+<div class="jumbotron">
+    
+    <h1>Welcome to  Tww</h1>
+    <p class="lead">The wind window (Tww) is a social network where users can share short messages called "winds" to express their thoughts, ideas, and experiences. Each wind has a character limit to promote concise and direct communication. Users can follow other members to keep up with their winds on their timelines. Additionally, Tww allows the use of "breezes" to categorize and discover related content, providing a dynamic and engaging browsing experience.</p>
+    <p><a class="btn btn-lg btn-success" href="{{url_for('signup')}}" role="button">Sign up</a></p>
+  </div>
+
+  <div class="row marketing">
+    <div class="col-lg-6">
+      <h4>Winds</h4>
+      <p>In Tww, "winds" are short messages that users share freely. This freedom of expression is crucial as it allows everyone to share their opinions and ideas authentically and openly. This fosters a diverse atmosphere and encourages meaningful discussions among community members.</p>
+
+      <h4>Window</h4>
+      <p>In Tww, "windows" are communities or thematic groups that users can follow to connect with other members interested in the same topic.</p>
+
+    
+    </div>
+
+    <div class="col-lg-6">
+        <h4>How Works</h4>
+        <p>In The wind window (Tww), users can follow others to view their public winds, send private winds, join communities (called windows), and use breezes to categorize their winds and discover related content.</p>
+        
+        <h4>Breezes</h4>
+        <p>In Tww, "breezes" are notifications about subjects you're interested in or enjoy.</p>
+  
+      
+    </div>
+  </div>
+  {% endblock %}
