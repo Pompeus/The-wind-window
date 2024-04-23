@@ -1,5 +1,6 @@
 from flask.cli import FlaskGroup
 from app import app, db, migrate
+from flask_migrate import upgrade, init
 
 cli = FlaskGroup(app)
 
@@ -10,12 +11,15 @@ def db_create():
 @cli.command('db_migrate')
 def db_migrate():
     migrate.init_app(app,db)
-    migrate.migrate()
 
 @cli.command('db_upgrade')
 def db_upgrade():
     migrate.init_app(app,db)
-    migrate.upgrade()
+    upgrade()
+
+@cli.command('db_init')
+def db_init():
+    init()
 
 if __name__ == '__main__':
     cli()

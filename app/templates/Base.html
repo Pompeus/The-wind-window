@@ -39,7 +39,11 @@
               {% else %}
               <a href="{{url_for('index')}}">Home</a></li>
               {% endif %}
-            <li role="presentation"><a href="#">About</a></li>
+              {% if current_user.is_authenticated %}
+                <li role="presentation"><a href="{{url_for('feed')}}">Home</a></li>
+              {% else %}
+                <li role="presentation"><a href="#">About</a></li>
+              {% endif %}
 
             {% if current_user.is_authenticated %}
               <li role="presentation"><a href="{{url_for('logout')}}">Logout</a></li>

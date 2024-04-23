@@ -1,0 +1,59 @@
+.feed{
+    display:flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.sidebar{
+    flex: 1;
+    background: lightgray;
+    padding: 20px;
+}
+
+.main-content{
+    flex:2;
+    background-color: white;
+    padding: 20px;
+    background-color: aquamarine;
+}
+
+.post{
+    margin-bottom: 20px;
+    border: 2px;
+    background-color: brown;
+    margin: center;
+}
+
+.posts{
+    margin-bottom: 20px;
+    border:1 px solid #ccc;
+    padding: 10px;
+    background-color: azure;
+}
+
+.form-post{
+    width: 300px;
+    box-sizing: border-box;
+}
+
+.text{
+    width: 600px;
+    height: 80px;
+    padding:10px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    resize: none;
+}
+
+.b-post{
+    width: 30%;
+    height: 40px;
+    padding: 10px;
+    background-color: #337ab7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

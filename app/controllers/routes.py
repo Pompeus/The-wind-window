@@ -1,8 +1,8 @@
 from app import app,db,lm
-from flask import render_template,flash, redirect, url_for
+from flask import render_template,flash, redirect, url_for,request
 from app.models.forms import LoginForm, Register
-from flask_login import login_user, logout_user
-from app.models.tables import User
+from flask_login import login_user, logout_user, current_user
+from app.models.tables import User, Post, Follow
 
 @lm.user_loader
 def load_user(id):
@@ -45,10 +45,33 @@ def signup():
 
     return render_template('signup.html', form= form)
 
-@app.route('/feed')
+@app.route('/feed', methods = ['GET', 'POST'])
 def feed():
-    return render_template('feed.html')
+    if not current_user.is_authenticated:
+        flash('Please, Log in')
+        return redirect(url_for('login'))
+
+    follower_ids = [follow for follow in Follow.query.filter_by(follower_id = current_user.id).all()]
+
+    follower_ids.append(current_user.id)
+
+    
+    posts = Post.query.filter(Post.user_id.in_(follower_ids)).all()
+    
+    return render_template('feed.html', posts = posts)
 
 @app.route('/perfil/<user>')
 def perfil(user):
     return render_template('perfil.html',user = user)
+
+@app.route('/post', methods = ['POST'])
+def post():
+    content = request.form['content']
+    if content:
+        new_post = Post(user_id= current_user.id, content= content)
+        db.session.add(new_post)
+        db.session.commit()
+    else:
+        flash('Error, The post is empty')
+    
+    return redirect(url_for('feed'))

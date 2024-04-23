@@ -1,4 +1,5 @@
 from app import db
+from datetime import datetime
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -42,6 +43,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     content = db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    created_at = db.Column(db.DateTime, default=datetime.now())
 
     owner = db.relationship('User', foreign_keys = user_id)
 
