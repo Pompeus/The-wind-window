@@ -5,7 +5,12 @@
 <link rel="stylesheet" href="static/css/style_feed.css">
 <div class = "feed">
     <div class="sidebar">
-        
+        <div class="profile-image">
+            <img src = " ">
+        </div>
+        <div class="user">
+            <a href = "{{url_for('perfil', user = current_user.username)}}" class="username">{{current_user.username}}</a>
+        </div>
     </div>
     <div class = "main-content">
         <div class="post">

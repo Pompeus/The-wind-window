@@ -3,6 +3,8 @@ from flask import render_template,flash, redirect, url_for,request
 from app.models.forms import LoginForm, Register
 from flask_login import login_user, logout_user, current_user
 from app.models.tables import User, Post, Follow
+from werkzeug.utils import secure_filename
+import os
 
 @lm.user_loader
 def load_user(id):
@@ -75,3 +77,22 @@ def post():
         flash('Error, The post is empty')
     
     return redirect(url_for('feed'))
+
+@app.route('/profile_image', methods = ['POST'])
+def profile_image():
+    if 'image' not in request.files:
+        return ('Empty Image')
+    
+    file = request.files['image']
+    if file.filename == '':
+        flash('File name is Empty')
+
+    if file:
+        file_name = secure_filename(file.filename)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'],file_name)
+        file.save(file_path)
+
+    current_user.file_path = file_path
+
+    db.session.add(current_user.file_path)
+    db.session.commit()

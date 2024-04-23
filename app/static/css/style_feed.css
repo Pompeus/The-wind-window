@@ -57,3 +57,14 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+.username{
+    flex: auto;
+    align-items: center;
+    font-size: 20px;
+}
+
+.img{
+    border-radius: 20px;
+
+}

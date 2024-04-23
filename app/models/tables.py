@@ -10,6 +10,7 @@ class User(db.Model):
     name = db.Column(db.String)
     email = db.Column(db.String)
     is_active = db.Column(db.Boolean, default=True)
+    img_path = db.Column(db.String)
 
     def __init__(self, username, password, name, email):
         self.username = username
