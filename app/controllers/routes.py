@@ -42,6 +42,7 @@ def signup():
             user = User(form.username.data,form.password.data,form.name.data,form.email.data)
             db.session.add(user)
             db.session.commit()
+            return redirect(url_for('login'))
         elif form.password.data != form.confirm_pass.data:
             flash('Passwords are different')
 
@@ -64,6 +65,9 @@ def feed():
 
 @app.route('/perfil/<user>')
 def perfil(user):
+    if not current_user.is_authenticated:
+        flash('Please, Log In')
+        return redirect(url_for('login'))
     return render_template('perfil.html',user = user)
 
 @app.route('/post', methods = ['POST'])
@@ -96,3 +100,15 @@ def profile_image():
 
     db.session.add(current_user.file_path)
     db.session.commit()
+
+@app.route('/search', methods = ['GET','POST'])
+def search():
+    if request.method == 'POST':
+        s_user = request.form['s_user']
+        user = User.query.filter_by(username = s_user)
+        if user:
+            return render_template('feed.html', search_users = user)
+        else:
+            flash(f'Not founded user {user}')
+
+    return render_template('feed.html')
